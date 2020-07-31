@@ -1,18 +1,13 @@
 const breedName = process.argv.slice(2);
 const {fetchBreedDescription} = require('./breedFetcher.js');
 
-// const callback = function (error, descrition){
-// };
-
-//THis is a callback function
-fetchBreedDescription(breedName,/*callback*/(error, description) => {
-  if (error) {
+const myCallback = function(error, description) {
+  if (error !== null) {
     console.log('ERROR: Something Went Wrong');
 
+  } else {
+    console.log(description);
   }
-  
-  if (description === undefined) {
-    console.log("no such paws here");
-  }
+};
 
-});
+fetchBreedDescription(breedName, myCallback);
